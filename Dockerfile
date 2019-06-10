@@ -10,4 +10,3 @@ EXPOSE 80
 
 # Start Nginx and keep it running background and start php
 CMD sed -i "s/ContainerID: /ContainerID: "$(hostname)"/g" /usr/share/nginx/xml/pom.xml && nginx -g "daemon off;"
-© 2019 GitHub, Inc.
