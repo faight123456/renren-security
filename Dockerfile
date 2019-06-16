@@ -1,12 +1,7 @@
-# Using a compact OS
-FROM daocloud.io/nginx:1.11-alpine
+FROM java:8
+EXPOSE 8080
 
-MAINTAINER Golfen Guo <golfen.guo@daocloud.io>
-
-# Add 2048 stuff into Nginx server
-COPY . /usr/share/nginx/xml
-
-EXPOSE 80
-
-# Start Nginx and keep it running background and start php
-CMD sed -i "s/ContainerID: /ContainerID: "$(hostname)"/g" /usr/share/nginx/xml/pom.xml && nginx -g "daemon off;"
+VOLUME /tmp
+ADD renren-admin.jar /app.jar
+RUN bash -c 'touch /app.jar'
+ENTRYPOINT ["java","-jar","/app.jar"]
